@@ -1,0 +1,31 @@
+import { Product } from "../../types/Product";
+
+interface Props {
+  product: Product;
+}
+
+function ProductCard({ product }: Props) {
+  return (
+    <div className="card">
+      <img 
+        src={product.image} 
+        alt={product.name} 
+        width="200"
+      />
+
+      <h2>{product.name}</h2>
+
+      <p>Category: {product.category}</p>
+
+      <p>Price: ₹{product.price}</p>
+
+      <p>{product.description}</p>
+
+      <button>
+        View Details
+      </button>
+    </div>
+  );
+}
+
+export default ProductCard;
