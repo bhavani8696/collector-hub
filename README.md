@@ -1,13 +1,10 @@
 # 🏆 CollectorHub - Collectibles Marketplace
 
-## 🚀 Live Demo
-
-👉 Add your deployed project URL here
 
 
 ## 🎥 Project Demo Video
 
-👉 Add your YouTube / Google Drive video link here
+👉 https://drive.google.com/file/d/1L6Z11lfnjL_vREqdhEYVNAnoizPqd05V/view?usp=drivesdk
 
 
 ## 💻 GitHub Repository
