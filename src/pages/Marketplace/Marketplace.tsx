@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./marketplace.css";
 
 
@@ -170,6 +170,13 @@ image:"https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=600"
 
 function Marketplace(){
 
+const [search,setSearch] = useState("");
+
+const [category,setCategory] = useState("All");
+
+const [sort,setSort] = useState("");
+
+
 
 const saveProduct=(type:string,product:any)=>{
 
@@ -192,6 +199,52 @@ alert("Added Successfully ✅");
 
 
 
+
+let filteredProducts = products.filter((product)=>{
+
+
+const searchMatch =
+product.name
+.toLowerCase()
+.includes(search.toLowerCase());
+
+
+const categoryMatch =
+category === "All" ||
+product.category === category;
+
+
+return searchMatch && categoryMatch;
+
+
+});
+
+
+
+if(sort==="low"){
+
+filteredProducts.sort(
+(a,b)=>
+Number(a.price.replace("₹","")) -
+Number(b.price.replace("₹",""))
+);
+
+}
+
+
+
+if(sort==="high"){
+
+filteredProducts.sort(
+(a,b)=>
+Number(b.price.replace("₹","")) -
+Number(a.price.replace("₹",""))
+);
+
+}
+
+
+
 return(
 
 <div className="marketplace">
@@ -203,12 +256,13 @@ return(
 🛒 CollectorHub Marketplace
 </h1>
 
+
 <p>
 Discover rare collections and unique products
 </p>
 
-
 </div>
+
 
 
 
@@ -217,11 +271,109 @@ Discover rare collections and unique products
 <div className="marquee-text">
 
 🔥 Trending:
-Vintage Camera • Rare Coins • Gaming Console • Paintings • Watches • Antique Collections
+Vintage Camera • Rare Coins • Gaming Console • Paintings • Watches
 
 </div>
 
 </div>
+
+
+
+
+
+<div className="market-tools">
+
+
+<input
+
+type="text"
+
+placeholder="🔍 Search products..."
+
+value={search}
+
+onChange={(e)=>setSearch(e.target.value)}
+
+/>
+
+
+
+
+<select
+
+value={category}
+
+onChange={(e)=>setCategory(e.target.value)}
+
+>
+
+<option value="All">
+All Categories
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Collectibles
+</option>
+
+<option>
+Books
+</option>
+
+<option>
+Art
+</option>
+
+<option>
+Music
+</option>
+
+<option>
+Fashion
+</option>
+
+
+</select>
+
+
+
+
+
+<select
+
+value={sort}
+
+onChange={(e)=>setSort(e.target.value)}
+
+>
+
+
+<option value="">
+Sort Price
+</option>
+
+
+<option value="low">
+Low → High
+</option>
+
+
+<option value="high">
+High → Low
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
 
 
 
@@ -229,15 +381,28 @@ Vintage Camera • Rare Coins • Gaming Console • Paintings • Watches • A
 
 
 {
-products.map((product)=>(
+
+filteredProducts.length === 0 ?
+
+<h2>
+🔍 No Products Found
+</h2>
+
+
+:
+
+filteredProducts.map((product)=>(
 
 
 <div className="product-card" key={product.id}>
 
 
 <img
+
 src={product.image}
+
 alt={product.name}
+
 />
 
 
@@ -256,6 +421,7 @@ alt={product.name}
 </h3>
 
 
+
 <button onClick={()=>saveProduct("cart",product)}>
 🛒 Add Cart
 </button>
@@ -271,10 +437,13 @@ alt={product.name}
 </button>
 
 
+
 </div>
 
 
 ))
+
+
 }
 
 
@@ -286,6 +455,5 @@ alt={product.name}
 );
 
 }
-
 
 export default Marketplace;
