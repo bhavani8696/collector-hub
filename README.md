@@ -6,7 +6,7 @@
 
 ## 💻 GitHub Repository
 
-👉 Add your GitHub repository URL here
+👉 https://github.com/bhavani8696/collector-hub
 
 ## 📌 Project Overview
 
