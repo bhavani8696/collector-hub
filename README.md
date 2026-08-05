@@ -1,32 +1,24 @@
-# React + TypeScript + Vite
+# 🏆 CollectorHub - Collectibles Marketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 🚀 Live Demo
 
-Currently, two official plugins are available:
+👉 Add your deployed project URL here
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## 🎥 Project Demo Video
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+👉 Add your YouTube / Google Drive video link here
 
-## Expanding the Oxlint configuration
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 💻 GitHub Repository
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+👉 Add your GitHub repository URL here
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## 📌 Project Overview
+
+CollectorHub is a React-based collectibles marketplace application developed as part of the React Web Developer Internship Assignment.
+
+The application allows users to explore collectible products, search items, filter products by category, sort by price, manage Wishlist, Cart, My Collection, and explore Community Feed.
+
+The goal of this project is to provide a clean, responsive, and user-friendly platform for collectors.
