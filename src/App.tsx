@@ -7,6 +7,7 @@ import Marketplace from "./pages/Marketplace/Marketplace";
 import Wishlist from "./pages/Wishlist";
 import MyCollection from "./pages/MyCollection";
 import Community from "./pages/Community";
+import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 
@@ -16,7 +17,6 @@ function App(){
 return(
 
 <BrowserRouter>
-
 
 <Navbar />
 
@@ -49,6 +49,12 @@ element={<MyCollection />}
 
 
 <Route
+path="/cart"
+element={<Cart />}
+/>
+
+
+<Route
 path="/community"
 element={<Community />}
 />
@@ -58,7 +64,6 @@ element={<Community />}
 path="/product/:id"
 element={<ProductDetails />}
 />
-
 
 
 </Routes>

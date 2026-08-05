@@ -1,132 +1,139 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./Wishlist.css";
 
 
-function Wishlist() {
+function Wishlist(){
 
+const [wishlist,setWishlist] = useState<any[]>([]);
 
-  const [items, setItems] = useState<any[]>([]);
 
+useEffect(()=>{
 
+const data =
+JSON.parse(localStorage.getItem("wishlist") || "[]");
 
-  useEffect(() => {
+setWishlist(data);
 
+},[]);
 
-    const savedItems =
-      JSON.parse(
-        localStorage.getItem("wishlist") || "[]"
-      );
 
 
-    setItems(savedItems);
+const removeItem=(index:number)=>{
 
+const updated =
+wishlist.filter((_,i)=>i!==index);
 
-  }, []);
 
+setWishlist(updated);
 
 
+localStorage.setItem(
+"wishlist",
+JSON.stringify(updated)
+);
 
-  return (
+};
 
 
-    <div className="wishlist-page">
 
+return(
 
-      <h1>
-        ❤️ My Wishlist
-      </h1>
+<div className="wishlist-page">
 
 
+<div className="wishlist-header">
 
-      <p>
-        Your favourite collectible items
-      </p>
+<h1>
+❤️ My Wishlist
+</h1>
 
+<p>
+Your favourite collectible items
+</p>
 
+</div>
 
 
-      {
-        items.length === 0 ?
 
+{
+wishlist.length===0 ?
 
-        <div className="empty-wishlist">
 
+<div className="empty-wishlist">
 
-          <h2>
-            Wishlist is Empty
-          </h2>
+<h2>
+Wishlist is Empty 😔
+</h2>
 
+<p>
+Add your favourite products here
+</p>
 
-          <p>
-            Add your favourite products here.
-          </p>
+</div>
 
 
-        </div>
 
+:
 
 
-        :
+<div className="wishlist-grid">
 
 
+{
+wishlist.map((item,index)=>(
 
-        <div className="wishlist-grid">
 
+<div className="wishlist-card" key={index}>
 
-          {
-            items.map((item,index)=>(
 
+<img
+src={item.image}
+alt={item.name}
+/>
 
-              <div 
-                className="wishlist-card"
-                key={index}
-              >
 
 
-                <img
-                  src={item.image}
-                  alt={item.name}
-                />
+<h2>
+{item.name}
+</h2>
 
 
+<p>
+{item.category}
+</p>
 
-                <h2>
-                  {item.name}
-                </h2>
 
+<h3>
+{item.price}
+</h3>
 
 
-                <p>
-                  {item.category}
-                </p>
 
+<button
+onClick={()=>removeItem(index)}
+>
 
+❌ Remove
 
-                <h3>
-                  {item.price}
-                </h3>
+</button>
 
 
+</div>
 
-              </div>
 
+))
+}
 
-            ))
-          }
 
+</div>
 
+}
 
-        </div>
 
 
-      }
+</div>
 
-
-
-    </div>
-
-
-  );
+);
 
 }
 

@@ -1,61 +1,77 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./MyCollection.css";
 
 
 function MyCollection(){
 
-
-const [items,setItems] = useState<any[]>([]);
+const [collection,setCollection] = useState<any[]>([]);
 
 
 
 useEffect(()=>{
 
-  const saved =
-    JSON.parse(
-      localStorage.getItem("collection") || "[]"
-    );
+const data =
+JSON.parse(localStorage.getItem("collection") || "[]");
 
-
-  setItems(saved);
-
+setCollection(data);
 
 },[]);
 
 
 
+const removeItem=(index:number)=>{
 
-return (
+const updated =
+collection.filter((_,i)=>i!==index);
+
+
+setCollection(updated);
+
+
+localStorage.setItem(
+"collection",
+JSON.stringify(updated)
+);
+
+};
+
+
+
+return(
 
 <div className="collection-page">
 
+
+<div className="collection-header">
 
 <h1>
 🏆 My Collection
 </h1>
 
-
 <p>
 Your favourite collectible items
 </p>
 
+</div>
+
 
 
 {
-items.length === 0 ?
+collection.length===0 ?
 
 
-<div className="empty-card">
+<div className="empty-collection">
 
 <h2>
-No Items Added Yet
+No Items Added Yet 😔
 </h2>
 
 <p>
-Add products from Marketplace and they will appear here.
+Add products to your collection and they will appear here.
 </p>
 
 </div>
+
 
 
 :
@@ -65,19 +81,17 @@ Add products from Marketplace and they will appear here.
 
 
 {
-items.map((item,index)=>(
+collection.map((item,index)=>(
 
 
-<div 
-className="collection-item"
-key={index}
->
+<div className="collection-card" key={index}>
 
 
 <img
 src={item.image}
 alt={item.name}
 />
+
 
 
 <h2>
@@ -95,6 +109,16 @@ alt={item.name}
 </h3>
 
 
+
+<button
+onClick={()=>removeItem(index)}
+>
+
+❌ Remove
+
+</button>
+
+
 </div>
 
 
@@ -102,9 +126,7 @@ alt={item.name}
 }
 
 
-
 </div>
-
 
 }
 
@@ -113,7 +135,6 @@ alt={item.name}
 </div>
 
 );
-
 
 }
 
