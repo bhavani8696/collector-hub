@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./marketplace.css";
 
-
 const products = [
+   // mee 20 products same
+
 
 {
 id:1,
@@ -180,6 +181,22 @@ const [category,setCategory] = useState("All");
 
 const [sort,setSort] = useState("");
 
+const [loading,setLoading] = useState(true);
+
+
+
+useEffect(()=>{
+
+setTimeout(()=>{
+
+setLoading(false);
+
+},1000);
+
+
+},[]);
+
+
 
 
 
@@ -206,6 +223,8 @@ alert("Added Successfully ✅");
 
 
 
+
+
 const filteredProducts = products
 .filter((product)=>{
 
@@ -216,11 +235,9 @@ product.name
 .includes(search.toLowerCase());
 
 
-
 const categoryMatch =
 category==="All" ||
 product.category===category;
-
 
 
 return searchMatch && categoryMatch;
@@ -239,7 +256,6 @@ Number(b.price.replace("₹",""));
 }
 
 
-
 if(sort==="high"){
 
 return Number(b.price.replace("₹","")) -
@@ -249,7 +265,6 @@ Number(a.price.replace("₹",""));
 
 
 return 0;
-
 
 });
 
@@ -264,7 +279,6 @@ return(
 <div className="marketplace">
 
 
-
 <div className="hero-market">
 
 <h1>
@@ -276,7 +290,9 @@ return(
 Discover rare collections and unique products
 </p>
 
+
 </div>
+
 
 
 
@@ -312,7 +328,6 @@ value={search}
 onChange={(e)=>setSearch(e.target.value)}
 
 />
-
 
 
 
@@ -374,6 +389,7 @@ onChange={(e)=>setSort(e.target.value)}
 
 >
 
+
 <option value="">
 Sort Price
 </option>
@@ -400,11 +416,21 @@ High → Low
 
 
 
-
 <div className="products-grid">
 
 
 {
+
+loading ?
+
+
+<h2>
+⏳ Loading Products...
+</h2>
+
+
+
+:
 
 
 filteredProducts.length===0 ?
@@ -413,6 +439,7 @@ filteredProducts.length===0 ?
 <h2>
 🔍 No Products Found
 </h2>
+
 
 
 :
@@ -434,15 +461,18 @@ alt={product.name}
 
 
 
+
 <h2>
 {product.name}
 </h2>
 
 
 
+
 <p>
 {product.category}
 </p>
+
 
 
 
@@ -488,7 +518,6 @@ onClick={()=>navigate(`/product/${product.id}`,{state:product})}
 
 
 
-
 </div>
 
 
@@ -498,14 +527,12 @@ onClick={()=>navigate(`/product/${product.id}`,{state:product})}
 }
 
 
-
 </div>
 
 
 </div>
 
 );
-
 
 }
 
