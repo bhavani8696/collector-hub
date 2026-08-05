@@ -1,61 +1,230 @@
 .community-page{
 
-  min-height:80vh;
-  padding:50px;
+min-height:100vh;
 
-  background:#f8fafc;
+padding:30px;
 
-  text-align:center;
+background:
+linear-gradient(
+135deg,
+#f8fafc,
+#eef2ff
+);
 
 }
 
 
+
 .community-page h1{
 
-  font-size:42px;
+text-align:center;
+
+font-size:36px;
+
+color:#111827;
+
+}
+
+
+
+.community-page > p{
+
+text-align:center;
+
+color:#64748b;
+
+font-size:18px;
+
+}
+
+
+
+
+
+.community-search{
+
+display:block;
+
+width:50%;
+
+margin:30px auto;
+
+padding:15px 20px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:16px;
+
+box-shadow:
+
+0 5px 20px rgba(0,0,0,0.12);
+
+outline:none;
+
+}
+
+
+
+
+
+.post-container{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+
+
+
+
+.post-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:25px;
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,0.12);
+
+transition:0.3s;
+
+}
+
+
+
+.post-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+
+
+
+
+.post-card img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+border-radius:20px;
+
+}
+
+
+
+
+.post-card h2{
+
+color:#111827;
+
+font-size:22px;
+
+margin-top:15px;
+
+}
+
+
+
+
+.post-card p{
+
+color:#64748b;
+
+font-size:16px;
+
+line-height:1.5;
+
+}
+
+
+
+
+
+.post-card button{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+background:#111827;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+
+.post-card button:hover{
+
+background:#4f46e5;
+
+}
+
+
+
+
+@media(max-width:900px){
+
+
+.post-container{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.community-page{
+
+padding:15px;
 
 }
 
 
 .post-container{
 
-  display:flex;
-  gap:30px;
-
-  justify-content:center;
-
-  margin-top:40px;
+grid-template-columns:1fr;
 
 }
 
 
-.post-card{
 
-  width:300px;
+.community-search{
 
-  background:white;
-
-  padding:25px;
-
-  border-radius:20px;
-
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+width:90%;
 
 }
 
-
-.post-card button{
-
-  padding:10px 20px;
-
-  border:none;
-
-  border-radius:10px;
-
-  background:#111827;
-
-  color:white;
-
-  cursor:pointer;
 
 }

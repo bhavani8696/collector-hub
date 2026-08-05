@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./marketplace.css";
 
 
@@ -170,11 +171,15 @@ image:"https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=600"
 
 function Marketplace(){
 
+const navigate = useNavigate();
+
+
 const [search,setSearch] = useState("");
 
 const [category,setCategory] = useState("All");
 
 const [sort,setSort] = useState("");
+
 
 
 
@@ -200,7 +205,9 @@ alert("Added Successfully ✅");
 
 
 
-let filteredProducts = products.filter((product)=>{
+
+const filteredProducts = products
+.filter((product)=>{
 
 
 const searchMatch =
@@ -209,25 +216,25 @@ product.name
 .includes(search.toLowerCase());
 
 
+
 const categoryMatch =
-category === "All" ||
-product.category === category;
+category==="All" ||
+product.category===category;
+
 
 
 return searchMatch && categoryMatch;
 
 
-});
+})
 
+.sort((a,b)=>{
 
 
 if(sort==="low"){
 
-filteredProducts.sort(
-(a,b)=>
-Number(a.price.replace("₹","")) -
-Number(b.price.replace("₹",""))
-);
+return Number(a.price.replace("₹","")) -
+Number(b.price.replace("₹",""));
 
 }
 
@@ -235,19 +242,27 @@ Number(b.price.replace("₹",""))
 
 if(sort==="high"){
 
-filteredProducts.sort(
-(a,b)=>
-Number(b.price.replace("₹","")) -
-Number(a.price.replace("₹",""))
-);
+return Number(b.price.replace("₹","")) -
+Number(a.price.replace("₹",""));
 
 }
+
+
+return 0;
+
+
+});
+
+
+
+
 
 
 
 return(
 
 <div className="marketplace">
+
 
 
 <div className="hero-market">
@@ -281,6 +296,8 @@ Vintage Camera • Rare Coins • Gaming Console • Paintings • Watches
 
 
 
+
+
 <div className="market-tools">
 
 
@@ -299,6 +316,7 @@ onChange={(e)=>setSearch(e.target.value)}
 
 
 
+
 <select
 
 value={category}
@@ -311,25 +329,31 @@ onChange={(e)=>setCategory(e.target.value)}
 All Categories
 </option>
 
+
 <option>
 Electronics
 </option>
+
 
 <option>
 Collectibles
 </option>
 
+
 <option>
 Books
 </option>
+
 
 <option>
 Art
 </option>
 
+
 <option>
 Music
 </option>
+
 
 <option>
 Fashion
@@ -349,7 +373,6 @@ value={sort}
 onChange={(e)=>setSort(e.target.value)}
 
 >
-
 
 <option value="">
 Sort Price
@@ -377,12 +400,15 @@ High → Low
 
 
 
+
 <div className="products-grid">
 
 
 {
 
-filteredProducts.length === 0 ?
+
+filteredProducts.length===0 ?
+
 
 <h2>
 🔍 No Products Found
@@ -390,6 +416,7 @@ filteredProducts.length === 0 ?
 
 
 :
+
 
 filteredProducts.map((product)=>(
 
@@ -406,14 +433,17 @@ alt={product.name}
 />
 
 
+
 <h2>
 {product.name}
 </h2>
 
 
+
 <p>
 {product.category}
 </p>
+
 
 
 <h3>
@@ -422,9 +452,13 @@ alt={product.name}
 
 
 
+
+
 <button onClick={()=>saveProduct("cart",product)}>
 🛒 Add Cart
 </button>
+
+
 
 
 <button onClick={()=>saveProduct("wishlist",product)}>
@@ -432,9 +466,26 @@ alt={product.name}
 </button>
 
 
+
+
 <button onClick={()=>saveProduct("collection",product)}>
 🏆 Collection
 </button>
+
+
+
+
+
+<button
+
+onClick={()=>navigate(`/product/${product.id}`,{state:product})}
+
+>
+
+👁 View Details
+
+</button>
+
 
 
 
@@ -447,6 +498,7 @@ alt={product.name}
 }
 
 
+
 </div>
 
 
@@ -454,6 +506,8 @@ alt={product.name}
 
 );
 
+
 }
+
 
 export default Marketplace;
