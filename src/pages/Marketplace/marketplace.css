@@ -1,0 +1,44 @@
+.marketplace {
+  padding: 40px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.marketplace h1 {
+  text-align: center;
+  font-size: 40px;
+  color: #1e293b;
+  margin-bottom: 35px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+
+.filters input,
+.filters select {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  outline: none;
+}
+
+.filters input {
+  width: 280px;
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: #2563eb;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
