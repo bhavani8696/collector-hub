@@ -19,7 +19,6 @@ export interface Product {
 }
 
 
-
 interface CollectionContextType {
 
   collection:Product[];
@@ -35,7 +34,6 @@ interface CollectionContextType {
 }
 
 
-
 const CollectionContext =
 createContext<CollectionContextType | null>(null);
 
@@ -48,20 +46,15 @@ export function CollectionProvider({
 }) {
 
 
-
 const [collection,setCollection] =
 useState<Product[]>(()=>{
 
   const saved =
   localStorage.getItem("collection");
 
-
-  return saved
-  ? JSON.parse(saved)
-  : [];
+  return saved ? JSON.parse(saved) : [];
 
 });
-
 
 
 
@@ -71,13 +64,9 @@ useState<Product[]>(()=>{
   const saved =
   localStorage.getItem("wishlist");
 
-
-  return saved
-  ? JSON.parse(saved)
-  : [];
+  return saved ? JSON.parse(saved) : [];
 
 });
-
 
 
 
@@ -92,17 +81,12 @@ collection.some(
 );
 
 
-
 if(exists){
 
-alert(
-"Already added to Collection"
-);
-
+alert("Already added to Collection");
 return;
 
 }
-
 
 
 const updated=[
@@ -120,15 +104,9 @@ JSON.stringify(updated)
 );
 
 
-
-alert(
-"Added to Collection ❤️"
-);
-
+alert("Added to Collection");
 
 };
-
-
 
 
 
@@ -143,9 +121,7 @@ collection.filter(
 );
 
 
-
 setCollection(updated);
-
 
 
 localStorage.setItem(
@@ -153,11 +129,7 @@ localStorage.setItem(
 JSON.stringify(updated)
 );
 
-
-
 };
-
-
 
 
 
@@ -173,18 +145,12 @@ wishlist.some(
 );
 
 
-
 if(exists){
 
-alert(
-"Already added to Wishlist"
-);
-
+alert("Already added to Wishlist");
 return;
 
 }
-
-
 
 
 const updated=[
@@ -193,9 +159,7 @@ product
 ];
 
 
-
 setWishlist(updated);
-
 
 
 localStorage.setItem(
@@ -204,12 +168,7 @@ JSON.stringify(updated)
 );
 
 
-
-alert(
-"Added to Wishlist ⭐"
-);
-
-
+alert("Added to Wishlist");
 
 };
 
@@ -222,55 +181,40 @@ return (
 <CollectionContext.Provider
 
 value={{
-
 collection,
-
 wishlist,
-
 addToCollection,
-
 removeFromCollection,
-
 addToWishlist
-
 }}
 
 >
 
-
 {children}
-
 
 </CollectionContext.Provider>
 
-
 );
-
 
 }
 
 
 
-
-
 export function useCollection(){
-
 
 const context =
 useContext(CollectionContext);
 
 
-
 if(!context){
 
 throw new Error(
-"Context error"
+"CollectionContext error"
 );
 
 }
 
 
 return context;
-
 
 }

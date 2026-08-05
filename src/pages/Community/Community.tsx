@@ -1,350 +1,201 @@
-import { useState } from "react";
+import React from "react";
+import "./Community.css";
 
 
-const initialPosts = [
-
+const posts = [
   {
-    id:1,
-    user:"Rahul",
-    category:"Camera",
-    image:
-    "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
-    caption:
-    "Found this amazing vintage camera in my collection!",
-    likes:120,
-    comments:25,
-    saved:false
+    id: 1,
+    user: "Rahul Sharma",
+    avatar: "👨‍💻",
+    title: "My Vintage Camera Collection",
+    description:
+      "Started collecting classic cameras. Added a rare 1980s film camera today!",
+    likes: 120,
+    comments: 24,
   },
 
-
   {
-    id:2,
-    user:"Priya",
-    category:"Coins",
-    image:
-    "https://images.unsplash.com/photo-1621360841013-c7683c659ec6",
-    caption:
-    "My rare coin collection from different countries.",
-    likes:95,
-    comments:18,
-    saved:false
+    id: 2,
+    user: "Ananya Patel",
+    avatar: "👩‍🎨",
+    title: "Rare Coin Discovery",
+    description:
+      "Found an amazing antique coin from my grandfather's collection.",
+    likes: 98,
+    comments: 18,
   },
 
-
   {
-    id:3,
-    user:"Arjun",
-    category:"Watch",
-    image:
-    "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
-    caption:
-    "Antique watch added to my collection.",
-    likes:80,
-    comments:12,
-    saved:false
-  }
-
+    id: 3,
+    user: "Arjun Kumar",
+    avatar: "🧑‍🚀",
+    title: "Collector Meetup",
+    description:
+      "Had an amazing meetup with collectors and shared our collections.",
+    likes: 150,
+    comments: 35,
+  },
 ];
 
 
 
+function Community() {
 
 
-function Community(){
+  return (
 
+    <div className="community">
 
-const [posts,setPosts] =
-useState(initialPosts);
 
+      {/* HERO */}
 
+      <section className="community-hero">
 
-const [search,setSearch] =
-useState("");
 
+        <span>
+          🌎 Collector Community
+        </span>
 
 
-const [category,setCategory] =
-useState("All");
+        <h1>
+          Connect With Collectors
+        </h1>
 
 
+        <p>
+          Share your collections, discover new items,
+          and interact with passionate collectors.
+        </p>
 
 
+      </section>
 
-const likePost=(id:number)=>{
 
 
-setPosts(
 
-posts.map(post=>
 
-post.id===id
+      {/* CREATE POST */}
 
-?
+      <div className="create-post">
 
-{
-...post,
-likes:post.likes+1
-}
 
-:
+        <h2>
+          Share Your Collection
+        </h2>
 
-post
 
-)
+        <textarea
 
-);
+          placeholder="Write something about your collection..."
 
+        />
 
-};
 
+        <button>
+          Create Post
+        </button>
 
 
+      </div>
 
 
 
-const savePost=(id:number)=>{
 
 
-setPosts(
+      {/* POSTS */}
 
-posts.map(post=>
+      <div className="posts-container">
 
-post.id===id
 
-?
+        {
+          posts.map((post)=>(
 
-{
-...post,
-saved:true
-}
 
-:
+            <div 
+              className="post-card"
+              key={post.id}
+            >
 
-post
 
-)
+              <div className="post-user">
 
-);
 
+                <div className="avatar">
 
-};
+                  {post.avatar}
 
+                </div>
 
 
+                <div>
 
+                  <h3>
+                    {post.user}
+                  </h3>
 
-const filteredPosts =
-posts.filter(post=>{
+                  <small>
+                    Collector
+                  </small>
 
+                </div>
 
-const searchMatch =
-post.caption
-.toLowerCase()
-.includes(
-search.toLowerCase()
-);
 
+              </div>
 
 
-const categoryMatch =
-category==="All" ||
-post.category===category;
 
 
 
-return searchMatch && categoryMatch;
+              <h2>
+                {post.title}
+              </h2>
 
 
-});
+              <p>
+                {post.description}
+              </p>
 
 
 
 
 
+              <div className="post-actions">
 
 
-return (
+                <button>
+                  ❤️ {post.likes}
+                </button>
 
-<div>
 
+                <button>
+                  💬 {post.comments}
+                </button>
 
-<h1>
-Community Feed 👥
-</h1>
 
+                <button>
+                  🔗 Share
+                </button>
 
 
-<input
+              </div>
 
-placeholder="Search posts..."
 
-value={search}
 
-onChange={(e)=>
-setSearch(e.target.value)
-}
+            </div>
 
-/>
 
+          ))
+        }
 
 
+      </div>
 
-<select
 
-onChange={(e)=>
-setCategory(e.target.value)
-}
+    </div>
 
->
-
-
-<option>
-All
-</option>
-
-
-<option>
-Camera
-</option>
-
-
-<option>
-Coins
-</option>
-
-
-<option>
-Watch
-</option>
-
-
-</select>
-
-
-
-
-
-
-{
-
-filteredPosts.length===0
-
-?
-
-<h3>
-No posts found
-</h3>
-
-
-:
-
-filteredPosts.map(post=>(
-
-
-
-<div
-className="card"
-key={post.id}
->
-
-
-
-<img
-
-className="product-image"
-
-src={post.image}
-
-alt=""
-
-/>
-
-
-
-
-<h2>
-{post.user}
-</h2>
-
-
-
-
-<p>
-Category: {post.category}
-</p>
-
-
-
-
-<p>
-{post.caption}
-</p>
-
-
-
-
-<p>
-❤️ {post.likes} Likes
-</p>
-
-
-
-<p>
-💬 {post.comments} Comments
-</p>
-
-
-
-
-<button
-
-onClick={()=>
-likePost(post.id)
-}
-
->
-❤️ Like
-</button>
-
-
-
-
-
-<button
-
-onClick={()=>
-savePost(post.id)
-}
-
->
-
-⭐ {post.saved ? "Saved":"Save"}
-
-</button>
-
-
-
-
-</div>
-
-
-
-))
-
+  );
 
 }
-
-
-
-
-
-</div>
-
-);
-
-
-}
-
 
 
 export default Community;

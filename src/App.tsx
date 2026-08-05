@@ -1,55 +1,73 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 
 import Marketplace from "./pages/Marketplace/Marketplace";
-import Collection from "./pages/Collection/Collection";
-import Community from "./pages/Community/Community";
+import Wishlist from "./pages/Wishlist";
+import MyCollection from "./pages/MyCollection";
+import Community from "./pages/Community";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 
-function App() {
-
-  return (
-
-    <BrowserRouter>
-
-      <Navbar />
+function App(){
 
 
-      <Routes>
+return(
+
+<BrowserRouter>
 
 
-        <Route
-          path="/"
-          element={<Marketplace />}
-        />
+<Navbar />
 
 
-        <Route
-          path="/collection"
-          element={<Collection />}
-        />
+<Routes>
 
 
-        <Route
-          path="/community"
-          element={<Community />}
-        />
+<Route
+path="/"
+element={<Marketplace />}
+/>
 
 
-        <Route
-          path="/product"
-          element={<ProductDetails />}
-        />
+<Route
+path="/marketplace"
+element={<Marketplace />}
+/>
 
 
-      </Routes>
+<Route
+path="/wishlist"
+element={<Wishlist />}
+/>
 
 
-    </BrowserRouter>
+<Route
+path="/collection"
+element={<MyCollection />}
+/>
 
-  );
+
+<Route
+path="/community"
+element={<Community />}
+/>
+
+
+<Route
+path="/product/:id"
+element={<ProductDetails />}
+/>
+
+
+
+</Routes>
+
+
+</BrowserRouter>
+
+);
+
 
 }
 

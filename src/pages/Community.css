@@ -1,0 +1,61 @@
+.community-page{
+
+  min-height:80vh;
+  padding:50px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+}
+
+
+.community-page h1{
+
+  font-size:42px;
+
+}
+
+
+.post-container{
+
+  display:flex;
+  gap:30px;
+
+  justify-content:center;
+
+  margin-top:40px;
+
+}
+
+
+.post-card{
+
+  width:300px;
+
+  background:white;
+
+  padding:25px;
+
+  border-radius:20px;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+
+.post-card button{
+
+  padding:10px 20px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#111827;
+
+  color:white;
+
+  cursor:pointer;
+
+}

@@ -1,84 +1,126 @@
+import React, { useState } from "react";
 import "./ProductCard.css";
-import { useNavigate } from "react-router-dom";
-import { useCollection } from "../../context/CollectionContext";
 
-interface Product {
-  id: number;
-  title: string;
-  category: string;
-  condition: string;
-  price: number;
-  seller: string;
-  location: string;
-  image: string;
-}
 
-interface Props {
-  product: Product;
-}
+function ProductCard({ product }: any) {
 
-function ProductCard({ product }: Props) {
-  const { addToCollection, addToWishlist } = useCollection();
-  const navigate = useNavigate();
+  const [liked, setLiked] = useState(false);
+
+
+  const addToCart = () => {
+
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    cart.push(product);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+    alert("Added to Cart ✅");
+
+  };
+
+
+
+  const viewDetails = () => {
+
+    alert(
+      `${product.name}\nCategory: ${product.category}\nPrice: ${product.price}`
+    );
+
+  };
+
+
 
   return (
-    <div className="card">
-      <img
-        className="product-image"
-        src={product.image}
-        alt={product.title}
-      />
 
-      <div className="card-content">
-        <h2>{product.title}</h2>
+    <div className="product-card">
 
-        <p>
-          <b>Category:</b> {product.category}
+
+      <div className="image-container">
+
+        <img
+          src={product.image}
+          alt={product.name}
+          onError={(e)=>{
+            e.currentTarget.src =
+            "https://via.placeholder.com/400x300?text=No+Image"
+          }}
+        />
+
+
+        <button
+          className="like-btn"
+          onClick={()=>setLiked(!liked)}
+        >
+
+          {liked ? "❤️" : "🤍"}
+
+        </button>
+
+
+        {product.featured && (
+          <span className="featured">
+            Featured
+          </span>
+        )}
+
+      </div>
+
+
+
+      <div className="product-info">
+
+
+        <p className="category">
+          {product.category}
         </p>
 
-        <p>
-          <b>Condition:</b> {product.condition}
-        </p>
 
-        <p className="price">₹{product.price}</p>
+        <h3>
+          {product.name}
+        </h3>
 
-        <p>
-          <b>Seller:</b> {product.seller}
-        </p>
 
-        <p>
-          <b>Location:</b> {product.location}
-        </p>
+        <h2>
+          {product.price}
+        </h2>
 
-        <div className="button-group">
-          <button
-            className="collection-btn"
-            onClick={() => addToCollection(product)}
-          >
-            ❤️ Add Collection
-          </button>
 
-          <button
-            className="wishlist-btn"
-            onClick={() => addToWishlist(product)}
-          >
-            ⭐ Wishlist
-          </button>
+
+        <div className="buttons">
+
 
           <button
             className="details-btn"
-            onClick={() =>
-              navigate("/product", {
-                state: product,
-              })
-            }
+            onClick={viewDetails}
           >
             View Details
           </button>
+
+
+
+          <button
+            className="cart-btn"
+            onClick={addToCart}
+          >
+            Add Cart
+          </button>
+
+
         </div>
+
+
       </div>
+
+
     </div>
+
   );
+
 }
+
 
 export default ProductCard;

@@ -1,0 +1,261 @@
+/* COMMUNITY */
+
+.community {
+
+  padding:40px;
+
+  background:#f3f6fb;
+
+  min-height:100vh;
+
+}
+
+
+
+/* HERO */
+
+.community-hero {
+
+  background:
+  linear-gradient(135deg,#2563eb,#7c3aed);
+
+  color:white;
+
+  padding:60px 40px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  margin-bottom:40px;
+
+}
+
+
+
+.community-hero span {
+
+  background:
+  rgba(255,255,255,0.2);
+
+  padding:10px 20px;
+
+  border-radius:30px;
+
+}
+
+
+
+.community-hero h1 {
+
+  font-size:50px;
+
+  margin:20px 0;
+
+}
+
+
+
+.community-hero p {
+
+  font-size:18px;
+
+}
+
+
+
+
+
+/* CREATE POST */
+
+.create-post {
+
+ background:white;
+
+ padding:30px;
+
+ border-radius:20px;
+
+ box-shadow:
+ 0 10px 30px rgba(0,0,0,0.08);
+
+ margin-bottom:40px;
+
+}
+
+
+
+.create-post textarea {
+
+ width:100%;
+
+ height:120px;
+
+ padding:15px;
+
+ border-radius:15px;
+
+ border:1px solid #ddd;
+
+ margin:20px 0;
+
+ resize:none;
+
+}
+
+
+
+.create-post button {
+
+ padding:14px 30px;
+
+ border:none;
+
+ border-radius:25px;
+
+ background:#2563eb;
+
+ color:white;
+
+ font-weight:600;
+
+ cursor:pointer;
+
+}
+
+
+
+
+
+/* POSTS */
+
+.posts-container {
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(auto-fit,minmax(320px,1fr));
+
+ gap:30px;
+
+}
+
+
+
+.post-card {
+
+ background:white;
+
+ padding:30px;
+
+ border-radius:22px;
+
+ box-shadow:
+ 0 10px 30px rgba(0,0,0,0.08);
+
+ transition:.3s;
+
+}
+
+
+
+.post-card:hover {
+
+ transform:translateY(-8px);
+
+}
+
+
+
+
+
+.post-user {
+
+ display:flex;
+
+ align-items:center;
+
+ gap:15px;
+
+}
+
+
+
+.avatar {
+
+ font-size:35px;
+
+}
+
+
+
+.post-card h2 {
+
+ margin-top:25px;
+
+ color:#111827;
+
+}
+
+
+
+.post-card p {
+
+ color:#6b7280;
+
+ line-height:1.6;
+
+}
+
+
+
+
+
+/* ACTIONS */
+
+.post-actions {
+
+ display:flex;
+
+ gap:15px;
+
+ margin-top:25px;
+
+}
+
+
+
+.post-actions button {
+
+ border:none;
+
+ background:#eef2ff;
+
+ padding:10px 15px;
+
+ border-radius:20px;
+
+ cursor:pointer;
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+ .community{
+
+  padding:20px;
+
+ }
+
+
+ .community-hero h1{
+
+  font-size:34px;
+
+ }
+
+}
